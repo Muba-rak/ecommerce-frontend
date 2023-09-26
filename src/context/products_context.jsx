@@ -14,7 +14,7 @@ import {
 } from "../actions";
 
 const initialState = {
-  isSideBarOpen: true,
+  isSideBarOpen: false,
 };
 
 const ProductsContext = React.createContext();
@@ -22,17 +22,16 @@ const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const openSideBar = () => {
-    console.log("done");
+  const openSidebar = () => {
     dispatch({ type: SIDEBAR_OPEN });
   };
 
-  const closeSideBar = () => {
+  const closeSidebar = () => {
     dispatch({ type: SIDEBAR_CLOSE });
   };
 
   return (
-    <ProductsContext.Provider value={{ ...state, openSideBar, closeSideBar }}>
+    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
       {children}
     </ProductsContext.Provider>
   );
