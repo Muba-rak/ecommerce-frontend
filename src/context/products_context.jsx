@@ -70,7 +70,6 @@ export const ProductsProvider = ({ children }) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
-        fetchSingleProduct,
       }}
     >
       {children}
