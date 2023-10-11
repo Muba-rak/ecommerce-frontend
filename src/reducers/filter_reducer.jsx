@@ -63,7 +63,31 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === FILTER_PRODUCTS) {
-    return { ...state };
+    const { allProducts } = state;
+    const { text, category, company, color, price, shipping } = state.filters;
+
+    let tempProducts = [...allProducts];
+    if (text) {
+      tempProducts = tempProducts.filter((product) => {
+        return product.name.toLowerCase().includes(text);
+      });
+    }
+
+    return { ...state, filteredProducts: tempProducts };
+  }
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.maxPrice,
+        shipping: false,
+      },
+    };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
