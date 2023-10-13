@@ -10,14 +10,12 @@ import {
 
 const getLocalStorage = () => {
   let cartItem = localStorage.getItem("cart");
-  // console.log(cartItem);
   if (cartItem) {
     return JSON.parse(localStorage.getItem("cart"));
   } else {
     return [];
   }
 };
-// console.log(getLocalStorage());
 
 const initialState = {
   cart: getLocalStorage(),
@@ -39,7 +37,6 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: REMOVE_CART_ITEM, payload: id });
   };
   const toggleAmount = (id, value) => {
-    // console.log(value);
     dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
   };
   const clearCart = () => {
